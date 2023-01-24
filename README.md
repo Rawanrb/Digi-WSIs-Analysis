@@ -38,7 +38,7 @@ You can download a copy of all the files in this repository by cloning the
 
 or [download a zip archive](https://github.com/Rawanrb/Digi-WSIs-Analysis/archive/refs/heads/main.zip).
 
-To execute and test the code, uncomment the lines in 
+To execute and test the code, uncomment the lines in `runme.R`.
 ## License 
 
 All source code is made available under a BSD 3-clause license. You can freely
