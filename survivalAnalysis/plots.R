@@ -1,7 +1,6 @@
+#
 setwd("..../..../....")
-
 getwd()
-
 
 library('Hmisc')
 library('GGally')
