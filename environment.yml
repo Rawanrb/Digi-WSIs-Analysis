@@ -1,0 +1,17 @@
+# Setup the environment for producing the results in the paper
+# Activate the environmet to run your code using "source activate Digi-WSIs-Analysis-Paper"
+# or "activate Digi-WSIs-Analysis-Paper" on Windows.
+name: Digi-WSIs-Analysis-Paper
+channels:
+    # Prioritize packages from conda-forge to avoid conflicts with defaults
+    - conda-forge
+    - defaults
+dependencies:
+    - python=3.9
+    - pip
+    - scikit-learn
+    - pandas
+    - scikit-survival
+
+    - pip:
+        -
