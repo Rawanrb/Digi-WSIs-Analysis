@@ -38,7 +38,42 @@ You can download a copy of all the files in this repository by cloning the
 
 or [download a zip archive](https://github.com/Rawanrb/Digi-WSIs-Analysis/archive/refs/heads/main.zip).
 
-To execute and test the code, uncomment the lines in `runme.R`.
+## Dependencies
+
+You'll need a working Python environment to run the code.
+The recommended way to set up your environment is through the
+[Anaconda Python distribution](https://www.anaconda.com/download/) which
+provides the `conda` package manager.
+Anaconda can be installed in your user directory and does not interfere with
+the system Python installation.
+The required dependencies are specified in the file `environment.yml`.
+
+We use `conda` virtual environments to manage the project dependencies in
+isolation.
+Thus, you can install our dependencies without causing conflicts with your
+setup (even with different Python versions).
+
+Run the following command in the repository folder (where `environment.yml`
+is located) to create a separate environment and install all required
+dependencies in it:
+
+    conda env create
+
+
+## Reproducing the results
+
+Before running any code you must activate the conda environment:
+
+    source activate ENVIRONMENT_NAME
+
+or, if you're on Windows:
+
+    activate ENVIRONMENT_NAME
+
+This will enable the environment for your current terminal session.
+Any subsequent commands will use software that is installed in the environment.
+To execute and test the code, uncomment the lines in `code/runme.R` or `code/runme.py`.
+
 ## License 
 
 All source code is made available under a BSD 3-clause license. You can freely
