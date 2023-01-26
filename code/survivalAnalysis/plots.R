@@ -97,44 +97,8 @@ forest_plot<-function(dataset,save_plot=FALSE,file_name=""){
     ggsave(file_name, plot=p, width=7.0, height=3.0)}
 
 }
-# --------------------- Correlation (Loop over features or marker) ---------------------- #
-multi_correlation<-function(save_csv=FALSE,show_plot=FALSE,file_name='',target_col=1,start_cols=1, end_cols=1){
 
-  ############### with Bonferroni Correction ##########################
-  threshold <- end_cols-start_cols
-  correlation_markers <- data.frame(matrix(ncol = 3, nrow = 0))
-  for (n in seq(start_cols,end_cols, by=1)){
-
-    col_one <- dataset[[n]]
-
-    col_two <- dataset[[target_col]]
-
-    try({
-      res <- cor.test(col_one,col_two,
-                         method = "spearman",exact=FALSE)
-      if (res$p.value*threshold < 0.05){
-        correlation_markers[nrow(correlation_markers) + 1,] <-c(colnames(dataset)[n],(res$p.value*threshold),res$estimate)
-      }
-      if (show_plot){
-
-        feature_one <- colnames(dataset)[n]
-        feature_two <- colnames(dataset)[target_col]
-
-        ggscatter(dataset, x = feature_one, y = feature_two,
-                    add = "reg.line", conf.int = TRUE,
-                    cor.coef = TRUE, cor.method = "spearman",
-                   xlab = col_one, ylab = col_two)
-    }
-    })
-  }
-
-  print(correlation_markers)
-  print(colnames(dataset)[target_col])
-
-  if (save_csv){
-    write.csv(correlation_markers,paste('/results/', file_name, '.csv'))
-  }
-}
+# --------------------- Non-linear correlation between features (Loop over features or marker) ---------------------- #
 rcs_plotHR<-function(dataset,save_plot=FALSE, file_name=""){
 
 
@@ -143,10 +107,7 @@ rcs_plotHR<-function(dataset,save_plot=FALSE, file_name=""){
 
   m <- cph(Surv(time, event)   , data=dataset)#~Feature Names,
 
-  p.val <- 1- pchisq( (fit.cph$loglik[2]- m$loglik[2]), 2 )
-  print(p.val)
   p <- plotHR(m, term=1, plot.bty="l", xlim=c(0, 0.1),col.term = "#DF76EE",col.se = "#0F5129",xlab = "")
-  print(p)
 
   if (save_plot){
     pdf(file = file_name)   # The directory you want to save the file in

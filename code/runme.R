@@ -43,4 +43,3 @@ linear_regression(dataset, feature_one=feature_one, feature_two=feature_two,x_la
 # box_plot(dataset, feature_one=feature_one, feature_two=feature_two,x_label=x_label, y_label=y_label,file_name= "/results/??")
 # forest_plot(dataset,file_name = "/results/??")
 # rcs_plotHR(dataset,file_name="/results/??")
-# multi_correlation(save=FALSE,show_plot=TRUE,file_name='',target_col=0,start_cols=0, end_cols=0)
