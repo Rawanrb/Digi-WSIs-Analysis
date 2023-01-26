@@ -13,7 +13,7 @@ test <- read.csv(file=gsub(" ", "",test_file), header=TRUE, sep=",")
 
 #the threshold types to be used to divide the data into high and low risk
 #the same threshold will used for training and validation sets
-methods <- c("median","mean","sd","surv_cut","mode","best_threshold")
+methods <- c("median","mean","sd","surv_cut","mode","quantile")
 
 #the name to be used for risk high and low values
 group_categories<- c()

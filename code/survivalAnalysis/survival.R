@@ -6,7 +6,7 @@ library(Hmisc)
 library("psych")
 library("harmonicmeanp")
 
-best_threshold_extraction <- function(feature, time, event, no_quantiles = 100) {
+quantile_extraction <- function(feature, time, event, no_quantiles = 100) {
 
   testrange<-seq(0, 0.99, len=no_quantiles)
   p <- sapply(testrange, function(q){
@@ -42,8 +42,8 @@ best_threshold_method <-function(train_,test_test,methods,y,x){
     else if(i =="mean"){
       threshold <- mean(train_[[x]])
     }
-    else if(i =="best_threshold"){
-      thresholds <- best_threshold_extraction(feature = train_[, x], time = train_$time, event = train_$event)
+    else if(i =="quantile"){
+      thresholds <- quantile_extraction(feature = train_[, x], time = train_$time, event = train_$event)
 
       try({for (i in thresholds){
         threshold <- i
@@ -233,12 +233,10 @@ calculate_survival_data_train_valid_with_CV<-function(x,runs,methods,group_categ
     test <- read.csv(file=gsub(" ", "",paste(c("/../../",file_init_valid,n,".csv"),collapse = "")), header=TRUE, sep=",")
     ########################################discovery with threshold############################
     y <- colnames(train)[x]
-    print(n)
-    print(y)
+
 
     threshold <- best_threshold_method(train,test,methods,y,x)
-    print("threshold")
-    print(threshold)
+
 
     train <- train %>% mutate(score = ifelse(get(y) <=threshold, group_categories[1], group_categories[2]))
     train$score <- factor(train$score)
