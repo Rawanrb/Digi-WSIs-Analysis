@@ -1,5 +1,4 @@
 from sksurv.ensemble import RandomSurvivalForest
-from pandas import read_csv
 from sklearn.model_selection import ShuffleSplit, GridSearchCV
 
 from sksurv.metrics import concordance_index_censored
@@ -67,7 +66,7 @@ def combinations_list(features):
     final_list = [item for item in output if len(item)>1]
     return final_list
 
-def survival_ml_combinations(df,df_test, combinations_list,type,save=False,save_folds = False, i =0):
+def survival_ml_combinations(df,df_test,train_file,valid_file, combinations_list,type,save=False,save_folds = False, i =0):
     # #############################################  Train Data ########################################
     # # to convert event values to true and false
     c_indices_lists = []
