@@ -14,8 +14,3 @@ if __name__ == '__main__':
     df_test = read_csv("/results/" + valid_file + '.csv')
 
     c_indices_lists = survML.survival_ml_combinations(df, df_test, combinations_lists, type='svm', save=True)
-
-    print(c_indices_lists)
-    print(combinations_lists)
-
-    #
