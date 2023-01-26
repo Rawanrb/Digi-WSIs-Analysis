@@ -1,5 +1,4 @@
-#
-setwd("..../..../....")
+setwd("/results/") # the folder where data available
 getwd()
 
 library('Hmisc')
@@ -77,8 +76,6 @@ correlation_method <-function(dataset, feature_one, feature_two,x_label, y_label
                                                      axis.title.y = element_text(size = 14, color = "black", face = "bold"))
   p <- p+labs(x = x_label, y =y_label)
 
-  #print(p)
-
   if(save_plot){
     pdf(file = file_name)
     print(p,newpage = FALSE)
@@ -102,6 +99,7 @@ forest_plot<-function(dataset,save_plot=FALSE,file_name=""){
 }
 # --------------------- Correlation (Loop over features or marker) ---------------------- #
 multi_correlation<-function(save_csv=FALSE,show_plot=FALSE,file_name='',target_col=1,start_cols=1, end_cols=1){
+
   ############### with Bonferroni Correction ##########################
   threshold <- end_cols-start_cols
   correlation_markers <- data.frame(matrix(ncol = 3, nrow = 0))
@@ -115,9 +113,6 @@ multi_correlation<-function(save_csv=FALSE,show_plot=FALSE,file_name='',target_c
       res <- cor.test(col_one,col_two,
                          method = "spearman",exact=FALSE)
       if (res$p.value*threshold < 0.05){
-        print(n)
-        print(colnames(dataset)[n])
-
         correlation_markers[nrow(correlation_markers) + 1,] <-c(colnames(dataset)[n],(res$p.value*threshold),res$estimate)
       }
       if (show_plot){
@@ -137,7 +132,7 @@ multi_correlation<-function(save_csv=FALSE,show_plot=FALSE,file_name='',target_c
   print(colnames(dataset)[target_col])
 
   if (save_csv){
-    write.csv(correlation_markers,paste('../../../..', file_name, '.csv'))
+    write.csv(correlation_markers,paste('/results/', file_name, '.csv'))
   }
 }
 rcs_plotHR<-function(dataset,save_plot=FALSE, file_name=""){

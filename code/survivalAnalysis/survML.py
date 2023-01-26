@@ -5,14 +5,12 @@ from sklearn.model_selection import ShuffleSplit, GridSearchCV
 from sksurv.metrics import concordance_index_censored
 from sksurv.svm import FastSurvivalSVM
 import numpy as np
-from sksurv.metrics import brier_score
 
 
 ###################################### Survival Random Forest#######################################
 def survRF(X, y,X_test, y_test,feature_name = '',df=None,df_test=None,save_predictions=False):
 
     estimator_RSF = RandomSurvivalForest().fit(X, y)
-
 
     ###################################### Predicting Random Survival Forest#######################################
 

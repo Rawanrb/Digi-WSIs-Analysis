@@ -12,6 +12,7 @@ dependencies:
     - scikit-learn
     - pandas
     - scikit-survival
+    - matplotlib
 
     - pip:
         -
