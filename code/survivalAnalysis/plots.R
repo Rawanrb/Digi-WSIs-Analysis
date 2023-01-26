@@ -154,19 +154,4 @@ rcs_plotHR<-function(dataset,save_plot=FALSE, file_name=""){
     dev.off()
   }
 }
-#--------------------- The data csv file ----------------------#
-dataset <- read.csv(file=".../.../.../...", header=TRUE, sep=",",dec = "")
 
-feature_one <- '...'
-feature_two <- '...'
-
-x_label <- "..."
-y_label <- "..."
-
-linear_regression(dataset, feature_one=feature_one, feature_two=feature_two,x_label=x_label, y_label=y_label)
-correlation_method(dataset, feature_one=feature_one, feature_two=feature_two, x_label=x_label, y_label=y_label, file_name = "../../..", save_plot=TRUE)
-box_plot(dataset, feature_one=feature_one, feature_two=feature_two,x_label=x_label, y_label=y_label,file_name= "../../..")
-forest_plot(dataset,file_name = "/../../...")
-rcs_plotHR(dataset,file_name="/../../...")
-multi_correlation(save=FALSE,show_plot=TRUE,file_name='',target_col=0,start_cols=0, end_cols=0)
-ICC(dataset)
