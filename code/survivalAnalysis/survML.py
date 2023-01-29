@@ -68,7 +68,6 @@ def combinations_list(features):
 
 def survival_ml_combinations(df,df_test,train_file,valid_file, combinations_list,type,save=False,save_folds = False, i =0):
     # #############################################  Train Data ########################################
-    # # to convert event values to true and false
     c_indices_lists = []
 
     try:
@@ -114,26 +113,26 @@ def survival_ml_combinations(df,df_test,train_file,valid_file, combinations_list
                 if type == 'svm':
                     c_index_train, c_index_test,df ,df_test = survSVM(X, y, X_test, y_test, feature_name=str(feature_cols)+'_svm', df=df, df_test=df_test, save_predictions=True)
                     if save:
-                        df.to_csv("/../" + train_file + '_svm_'+train_file+'_train.csv')
+                        df.to_csv("/results/" + train_file + '_svm_'+train_file+'_train.csv')
                         df_test.to_csv(
-                            "/../" + valid_file + '_svm_'+train_file+'_train.csv')
+                            "/results/" + valid_file + '_svm_'+train_file+'_train.csv')
                     if save_folds:
                         df.to_csv(
-                            "/../" + "train_"+str(i)+'.csv')
+                            "/results/" + "train_"+str(i)+'.csv')
                         df_test.to_csv(
-                            "/../" + "valid_"+str(i)+'.csv')
+                            "/results/" + "valid_"+str(i)+'.csv')
                 else:
                     c_index_train, c_index_test,df, df_test = survRF(X, y,X_test, y_test, feature_name=str(feature_cols) + '_rsf', df=df, df_test=df_test, save_predictions=True)
                     if save:
                         df.to_csv(
-                            "/../" + train_file + '_rsf_' + train_file + '_train.csv')
+                            "/results/" + train_file + '_rsf_' + train_file + '_train.csv')
                         df_test.to_csv(
-                            "/../" + valid_file + '_rsf_' + train_file + '_train.csv')
+                            "/results/" + valid_file + '_rsf_' + train_file + '_train.csv')
                     if save_folds:
                         df.to_csv(
-                            "/../" + "train_"+str(i)+'.csv')
+                            "/results/" + "train_"+str(i)+'.csv')
                         df_test.to_csv(
-                            "/../" + "valid_"+str(i)+'.csv')
+                            "/results/" + "valid_"+str(i)+'.csv')
 
 
                 print([feature_cols,c_index_train, c_index_test])
